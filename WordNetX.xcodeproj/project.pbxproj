@@ -360,25 +360,19 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3D9215631A890F7B0002D919 /* Development */ = {
+		3D9215631A890F7B0002D919 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
-			name = Development;
+			name = Debug;
 		};
-		3D9215641A890F7B0002D919 /* Deployment */ = {
+		3D9215641A890F7B0002D919 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
-			name = Deployment;
+			name = Release;
 		};
-		3D9215651A890F7B0002D919 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
-		};
-		3D9215661A890F7B0002D919 /* Development */ = {
+		3D9215661A890F7B0002D919 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -402,9 +396,9 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		3D9215671A890F7B0002D919 /* Deployment */ = {
+		3D9215671A890F7B0002D919 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -425,27 +419,7 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
-		};
-		3D9215681A890F7B0002D919 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = WordNetX;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -453,22 +427,20 @@
 		3D9215691A890F7C0002D919 /* Build configuration list for PBXProject "WordNetX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D9215631A890F7B0002D919 /* Development */,
-				3D9215641A890F7B0002D919 /* Deployment */,
-				3D9215651A890F7B0002D919 /* Default */,
+				3D9215631A890F7B0002D919 /* Debug */,
+				3D9215641A890F7B0002D919 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 		3D92156A1A890F7C0002D919 /* Build configuration list for PBXApplicationTarget "WordNetX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D9215661A890F7B0002D919 /* Development */,
-				3D9215671A890F7B0002D919 /* Deployment */,
-				3D9215681A890F7B0002D919 /* Default */,
+				3D9215661A890F7B0002D919 /* Debug */,
+				3D9215671A890F7B0002D919 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
