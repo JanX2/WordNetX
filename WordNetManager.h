@@ -44,7 +44,6 @@ typedef enum {noun = 1, verb, adj, adv} POS;
            NSString for glosses*/
 - (id)dataForSynset:(NSNumber *)synset withRelation:(NSString *)relation;
 
-- (NSArray *)wordsForSynset:(NSNumber *)synset;
 - (NSString *)glossForSynset:(NSNumber *)synset;
 - (NSArray *)verbFramesForSynset:(NSNumber *)synset;
 - (NSNumber *)hypernymForSynset:(NSNumber *)synset;
