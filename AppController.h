@@ -6,8 +6,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "WordNetTableView.h";
-#import "WordNetManager.h";
+#import "WordNetTableView.h"
+#import "WordNetManager.h"
 
 @interface NSTableView (NSTableViewExtentionForWordNetX)
 - (NSTableColumn *)mainColumn;
