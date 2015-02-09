@@ -361,10 +361,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         [dataBundle retain];
         
         indexDict = [[NSMutableDictionary alloc] init];
-        [indexDict retain];
-        
         dataDict = [[NSMutableDictionary alloc] init];
-        [dataDict retain];
         
         nounRoots = [self loadRootsOfType:noun];
         [nounRoots retain];

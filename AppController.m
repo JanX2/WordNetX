@@ -112,6 +112,7 @@ NSString *verbsString = @"VERBS";
     [sensesTable setRowHeight:height * LINE_BOTTOM_MARGIN_FACTOR + LINE_BOTTOM_MARGIN];
     
     programResizing = NO;
+	[cell release];
 }
 
 - (void)updateGuesses {
@@ -229,14 +230,10 @@ NSString *verbsString = @"VERBS";
     if (!(self = [super init])) return nil;
     wordNet = [[WordNetManager alloc] initWithBundle:[NSBundle mainBundle]];
     backStack = [[NSMutableArray alloc] init];
-    [backStack retain];
     forwardStack = [[NSMutableArray alloc] init];
-    [forwardStack retain];
-    expandedRelations = [NSMutableSet setWithArray:[wordNet allRelations]];
-    [expandedRelations retain];
-    
+    expandedRelations = [[NSMutableSet alloc] initWithArray:[wordNet allRelations]];
+	
     hierarchyData = [[NSMutableArray alloc] init];
-    [hierarchyData retain];
     [hierarchyData addObject:[wordNet hypernymNounRoots]];
     
     timeTraveling =
