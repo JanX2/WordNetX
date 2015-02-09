@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXApplicationTarget section */
+		29B97326FDCFA39411CA2CEA /* WordNetX */ = {
+			isa = PBXApplicationTarget;
+			buildConfigurationList = 3D92156A1A890F7C0002D919 /* Build configuration list for PBXApplicationTarget "WordNetX" */;
+			buildPhases = (
+				29B97327FDCFA39411CA2CEA /* Headers */,
+				29B97328FDCFA39411CA2CEA /* Resources */,
+				29B9732BFDCFA39411CA2CEA /* Sources */,
+				29B9732DFDCFA39411CA2CEA /* Frameworks */,
+			);
+			dependencies = (
+			);
+			name = WordNetX;
+			productInstallPath = "$(HOME)/Applications";
+			productName = WordNetX;
+			productReference = 17587328FF379C6511CA2CBB /* WordNetX.app */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>WordNetX</string>
+	<key>CFBundleIconFile</key>
+	<string>WordNetBright</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSKeyEquivalent</key>
+			<dict>
+				<key>default</key>
+				<string>D</string>
+			</dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Look up in WordNetX</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>lookupFromPB</string>
+			<key>NSPortName</key>
+			<string>WordNetX</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
+";
+		};
+/* End PBXApplicationTarget section */
+
+/* Begin PBXBuildFile section */
+		080E96DCFE201CFB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		29B9732CFDCFA39411CA2CEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		F57109360506A5420182C2CD /* roots.noun in Resources */ = {isa = PBXBuildFile; fileRef = F57109350506A5420182C2CD /* roots.noun */; };
+		F571093A0506A5CC0182C2CD /* roots.verb in Resources */ = {isa = PBXBuildFile; fileRef = F57109390506A5CC0182C2CD /* roots.verb */; };
+		F59A58FB0506956F01A0EF60 /* WordNetBright.icns in Resources */ = {isa = PBXBuildFile; fileRef = F59A58FA0506956F01A0EF60 /* WordNetBright.icns */; };
+		F5A7CD8805070FF70110BDA9 /* WordNetTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A7CD8605070FF70110BDA9 /* WordNetTableView.h */; };
+		F5A7CD8905070FF70110BDA9 /* WordNetTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A7CD8705070FF70110BDA9 /* WordNetTableView.m */; };
+		F5ABFBED05087F600102646F /* back.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F5ABFBEB05087F5F0102646F /* back.tiff */; };
+		F5ABFBEE05087F600102646F /* forward.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F5ABFBEC05087F600102646F /* forward.tiff */; };
+		F5B6BF0504FA906B015D5FE1 /* adj.exc in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEF804FA9068015D5FE1 /* adj.exc */; };
+		F5B6BF0604FA906B015D5FE1 /* adv.exc in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEF904FA9068015D5FE1 /* adv.exc */; };
+		F5B6BF0704FA906B015D5FE1 /* data.adj in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEFA04FA9068015D5FE1 /* data.adj */; };
+		F5B6BF0804FA906B015D5FE1 /* data.adv in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEFB04FA9068015D5FE1 /* data.adv */; };
+		F5B6BF0904FA906B015D5FE1 /* data.noun in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEFC04FA9069015D5FE1 /* data.noun */; };
+		F5B6BF0A04FA906B015D5FE1 /* data.verb in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEFD04FA906A015D5FE1 /* data.verb */; };
+		F5B6BF0B04FA906B015D5FE1 /* frames.vrb in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEFE04FA906A015D5FE1 /* frames.vrb */; };
+		F5B6BF0D04FA906B015D5FE1 /* index.adv in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BF0004FA906A015D5FE1 /* index.adv */; };
+		F5B6BF0E04FA906B015D5FE1 /* index.noun in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BF0104FA906B015D5FE1 /* index.noun */; };
+		F5B6BF0F04FA906B015D5FE1 /* index.verb in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BF0204FA906B015D5FE1 /* index.verb */; };
+		F5B6BF1004FA906B015D5FE1 /* noun.exc in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BF0304FA906B015D5FE1 /* noun.exc */; };
+		F5B6BF1104FA906B015D5FE1 /* verb.exc in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BF0404FA906B015D5FE1 /* verb.exc */; };
+		F5B6BF1404FAA7A1015D5FE1 /* binsrch.c in Sources */ = {isa = PBXBuildFile; fileRef = F5B6BF1204FAA7A1015D5FE1 /* binsrch.c */; };
+		F5B6BF1504FAA7A1015D5FE1 /* binsrch.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B6BF1304FAA7A1015D5FE1 /* binsrch.h */; };
+		F5B6BF1804FAA87A015D5FE1 /* WordNetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B6BF1604FAA87A015D5FE1 /* WordNetManager.h */; };
+		F5B6BF1904FAA87A015D5FE1 /* WordNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B6BF1704FAA87A015D5FE1 /* WordNetManager.m */; };
+		F5B6BF1A04FAB9C1015D5FE1 /* index.adj in Resources */ = {isa = PBXBuildFile; fileRef = F5B6BEFF04FA906A015D5FE1 /* index.adj */; };
+		F5B6BF2604FB55FD015D5FE1 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B6BF2104FB1AF0015D5FE1 /* AppController.m */; };
+		F5B6BF2704FB55FE015D5FE1 /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B6BF2004FB1AF0015D5FE1 /* AppController.h */; };
+		F5B6C11A0502EF7A015D5FE1 /* relations.format in Resources */ = {isa = PBXBuildFile; fileRef = F5B6C1190502EF7A015D5FE1 /* relations.format */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		17587328FF379C6511CA2CBB /* WordNetX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = WordNetX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		F57109350506A5420182C2CD /* roots.noun */ = {isa = PBXFileReference; lastKnownFileType = text; path = roots.noun; sourceTree = "<group>"; };
+		F57109390506A5CC0182C2CD /* roots.verb */ = {isa = PBXFileReference; lastKnownFileType = text; path = roots.verb; sourceTree = "<group>"; };
+		F59A58FA0506956F01A0EF60 /* WordNetBright.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = WordNetBright.icns; sourceTree = "<group>"; };
+		F5A7CD8605070FF70110BDA9 /* WordNetTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordNetTableView.h; sourceTree = "<group>"; };
+		F5A7CD8705070FF70110BDA9 /* WordNetTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordNetTableView.m; sourceTree = "<group>"; };
+		F5ABFBEB05087F5F0102646F /* back.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = back.tiff; sourceTree = "<group>"; };
+		F5ABFBEC05087F600102646F /* forward.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = forward.tiff; sourceTree = "<group>"; };
+		F5B6BEF804FA9068015D5FE1 /* adj.exc */ = {isa = PBXFileReference; lastKnownFileType = text; path = adj.exc; sourceTree = "<group>"; };
+		F5B6BEF904FA9068015D5FE1 /* adv.exc */ = {isa = PBXFileReference; lastKnownFileType = text; path = adv.exc; sourceTree = "<group>"; };
+		F5B6BEFA04FA9068015D5FE1 /* data.adj */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.adj; sourceTree = "<group>"; };
+		F5B6BEFB04FA9068015D5FE1 /* data.adv */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.adv; sourceTree = "<group>"; };
+		F5B6BEFC04FA9069015D5FE1 /* data.noun */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.noun; sourceTree = "<group>"; };
+		F5B6BEFD04FA906A015D5FE1 /* data.verb */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.verb; sourceTree = "<group>"; };
+		F5B6BEFE04FA906A015D5FE1 /* frames.vrb */ = {isa = PBXFileReference; lastKnownFileType = text; path = frames.vrb; sourceTree = "<group>"; };
+		F5B6BEFF04FA906A015D5FE1 /* index.adj */ = {isa = PBXFileReference; lastKnownFileType = text; path = index.adj; sourceTree = "<group>"; };
+		F5B6BF0004FA906A015D5FE1 /* index.adv */ = {isa = PBXFileReference; lastKnownFileType = text; path = index.adv; sourceTree = "<group>"; };
+		F5B6BF0104FA906B015D5FE1 /* index.noun */ = {isa = PBXFileReference; lastKnownFileType = text; path = index.noun; sourceTree = "<group>"; };
+		F5B6BF0204FA906B015D5FE1 /* index.verb */ = {isa = PBXFileReference; lastKnownFileType = text; path = index.verb; sourceTree = "<group>"; };
+		F5B6BF0304FA906B015D5FE1 /* noun.exc */ = {isa = PBXFileReference; lastKnownFileType = text; path = noun.exc; sourceTree = "<group>"; };
+		F5B6BF0404FA906B015D5FE1 /* verb.exc */ = {isa = PBXFileReference; lastKnownFileType = text; path = verb.exc; sourceTree = "<group>"; };
+		F5B6BF1204FAA7A1015D5FE1 /* binsrch.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = binsrch.c; sourceTree = "<group>"; };
+		F5B6BF1304FAA7A1015D5FE1 /* binsrch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = binsrch.h; sourceTree = "<group>"; };
+		F5B6BF1604FAA87A015D5FE1 /* WordNetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordNetManager.h; sourceTree = "<group>"; };
+		F5B6BF1704FAA87A015D5FE1 /* WordNetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordNetManager.m; sourceTree = "<group>"; };
+		F5B6BF2004FB1AF0015D5FE1 /* AppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		F5B6BF2104FB1AF0015D5FE1 /* AppController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		F5B6C1190502EF7A015D5FE1 /* relations.format */ = {isa = PBXFileReference; lastKnownFileType = text; path = relations.format; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29B9732DFDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F5A7CD8605070FF70110BDA9 /* WordNetTableView.h */,
+				F5A7CD8705070FF70110BDA9 /* WordNetTableView.m */,
+				F5B6BF2004FB1AF0015D5FE1 /* AppController.h */,
+				F5B6BF2104FB1AF0015D5FE1 /* AppController.m */,
+				F5B6BF1604FAA87A015D5FE1 /* WordNetManager.h */,
+				F5B6BF1704FAA87A015D5FE1 /* WordNetManager.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				17587328FF379C6511CA2CBB /* WordNetX.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* WordNetX */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = WordNetX;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F5B6BF1304FAA7A1015D5FE1 /* binsrch.h */,
+				F5B6BF1204FAA7A1015D5FE1 /* binsrch.c */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F5B6BEFA04FA9068015D5FE1 /* data.adj */,
+				F5B6BEFB04FA9068015D5FE1 /* data.adv */,
+				F5B6BEFC04FA9069015D5FE1 /* data.noun */,
+				F5B6BEFD04FA906A015D5FE1 /* data.verb */,
+				F5B6BEFF04FA906A015D5FE1 /* index.adj */,
+				F5B6BF0004FA906A015D5FE1 /* index.adv */,
+				F5B6BF0104FA906B015D5FE1 /* index.noun */,
+				F5B6BF0204FA906B015D5FE1 /* index.verb */,
+				F5B6BEF804FA9068015D5FE1 /* adj.exc */,
+				F5B6BEF904FA9068015D5FE1 /* adv.exc */,
+				F5B6BF0304FA906B015D5FE1 /* noun.exc */,
+				F5B6BF0404FA906B015D5FE1 /* verb.exc */,
+				F5B6BEFE04FA906A015D5FE1 /* frames.vrb */,
+				F5B6C1190502EF7A015D5FE1 /* relations.format */,
+				F57109350506A5420182C2CD /* roots.noun */,
+				F57109390506A5CC0182C2CD /* roots.verb */,
+				F59A58FA0506956F01A0EF60 /* WordNetBright.icns */,
+				F5ABFBEB05087F5F0102646F /* back.tiff */,
+				F5ABFBEC05087F600102646F /* forward.tiff */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		29B97327FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5B6BF1504FAA7A1015D5FE1 /* binsrch.h in Headers */,
+				F5B6BF1804FAA87A015D5FE1 /* WordNetManager.h in Headers */,
+				F5B6BF2704FB55FE015D5FE1 /* AppController.h in Headers */,
+				F5A7CD8805070FF70110BDA9 /* WordNetTableView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 3D9215691A890F7C0002D919 /* Build configuration list for PBXProject "WordNetX" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* WordNetX */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29B97326FDCFA39411CA2CEA /* WordNetX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29B97328FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				080E96DCFE201CFB7F000001 /* MainMenu.nib in Resources */,
+				089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */,
+				F5B6BF0504FA906B015D5FE1 /* adj.exc in Resources */,
+				F5B6BF0604FA906B015D5FE1 /* adv.exc in Resources */,
+				F5B6BF0704FA906B015D5FE1 /* data.adj in Resources */,
+				F5B6BF0804FA906B015D5FE1 /* data.adv in Resources */,
+				F5B6BF0904FA906B015D5FE1 /* data.noun in Resources */,
+				F5B6BF0A04FA906B015D5FE1 /* data.verb in Resources */,
+				F5B6BF0B04FA906B015D5FE1 /* frames.vrb in Resources */,
+				F5B6BF0D04FA906B015D5FE1 /* index.adv in Resources */,
+				F5B6BF0E04FA906B015D5FE1 /* index.noun in Resources */,
+				F5B6BF0F04FA906B015D5FE1 /* index.verb in Resources */,
+				F5B6BF1004FA906B015D5FE1 /* noun.exc in Resources */,
+				F5B6BF1104FA906B015D5FE1 /* verb.exc in Resources */,
+				F5B6BF1A04FAB9C1015D5FE1 /* index.adj in Resources */,
+				F5B6C11A0502EF7A015D5FE1 /* relations.format in Resources */,
+				F59A58FB0506956F01A0EF60 /* WordNetBright.icns in Resources */,
+				F57109360506A5420182C2CD /* roots.noun in Resources */,
+				F571093A0506A5CC0182C2CD /* roots.verb in Resources */,
+				F5ABFBED05087F600102646F /* back.tiff in Resources */,
+				F5ABFBEE05087F600102646F /* forward.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		29B9732BFDCFA39411CA2CEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B9732CFDCFA39411CA2CEA /* main.m in Sources */,
+				F5B6BF1404FAA7A1015D5FE1 /* binsrch.c in Sources */,
+				F5B6BF1904FAA87A015D5FE1 /* WordNetManager.m in Sources */,
+				F5B6BF2604FB55FD015D5FE1 /* AppController.m in Sources */,
+				F5A7CD8905070FF70110BDA9 /* WordNetTableView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D9215631A890F7B0002D919 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		3D9215641A890F7B0002D919 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+		3D9215651A890F7B0002D919 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+		3D9215661A890F7B0002D919 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = WordNetX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		3D9215671A890F7B0002D919 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = WordNetX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		3D9215681A890F7B0002D919 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = WordNetX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D9215691A890F7C0002D919 /* Build configuration list for PBXProject "WordNetX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9215631A890F7B0002D919 /* Development */,
+				3D9215641A890F7B0002D919 /* Deployment */,
+				3D9215651A890F7B0002D919 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		3D92156A1A890F7C0002D919 /* Build configuration list for PBXApplicationTarget "WordNetX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D9215661A890F7B0002D919 /* Development */,
+				3D9215671A890F7B0002D919 /* Deployment */,
+				3D9215681A890F7B0002D919 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
