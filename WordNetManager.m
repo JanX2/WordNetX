@@ -522,7 +522,9 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     
     if ((data = dataDict[synset]))
         return data[relation];
-    return [self loadDataForSynset:synset][relation];
+	data = [self loadDataForSynset:synset];
+	dataDict[synset] = data;
+    return data[relation];
 }
 
 - (NSArray *)wordsForSynset:(NSNumber *)synset
