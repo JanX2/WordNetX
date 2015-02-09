@@ -225,7 +225,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     NSMutableDictionary *data;
     NSString *relationString;
     NSMutableArray *relationsArray, *finalRelationsArray; 
-    POS synpos = [synset integerValue] / MINSYNSET;
+    POS synpos = [synset intValue] / MINSYNSET;
     NSInteger synval = [synset integerValue] % MINSYNSET;
     NSInteger i, j, totalwords, totalrelations, totalframes,
         relsynval, relsynpos, frame, wordIndex;
