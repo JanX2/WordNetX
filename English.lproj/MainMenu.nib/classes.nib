@@ -1,0 +1,31 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                addHierarchyBrowserColumn = id; 
+                back = id; 
+                browserSingleClick = id; 
+                forward = id; 
+                removeHierarchyBrowserColumn = id; 
+                searchForWord = id; 
+                toggleHierarchyWindowVisible = id; 
+            }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                backButton = NSButton; 
+                forwardButton = NSButton; 
+                hierarchyBrowser = NSBrowser; 
+                relationsView = NSOutlineView; 
+                searchField = NSTextField; 
+                sensesTable = WordNetTableView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSMutableArray; LANGUAGE = ObjC; SUPERCLASS = NSArray; }, 
+        {CLASS = NSTableView; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = WordNetTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+    ); 
+    IBVersion = 1; 
+}
