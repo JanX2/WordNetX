@@ -97,9 +97,9 @@ NSString *verbsString = @"VERBS";
     
     height = 16.0;
     for (i = 0; i < [senses count]; ++i) {
-        [cell setAttributedStringValue:[[NSAttributedString alloc]
+        [cell setAttributedStringValue:[[[NSAttributedString alloc]
             initWithString:[wordNet glossForSynset:senses[i]]
-            attributes:attrs]];
+            attributes:attrs] autorelease]];
         testHeight = [cell cellSizeForBounds:NSMakeRect(0, 0,
             [[sensesTable mainColumn] width] * VERTICAL_MARGIN_FACTOR, 50000)].height;
         

@@ -91,7 +91,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 
 - (NSArray *)loadRootsOfType:(POS)type
 {
-    NSMutableArray *rootlist = [[NSMutableArray alloc] init];
+    NSMutableArray *rootlist = [NSMutableArray array];
     FILE *a;
     NSInteger synval;
     char *line;
@@ -120,7 +120,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             ofType:@"vrb"] UTF8String], "r")))
         return;
     
-    vf = [[NSMutableArray alloc] init];
+    vf = [NSMutableArray array];
 
     while (getclippedline(lineBuffer, LINE_SIZE, a)) {
         line = lineBuffer;
@@ -179,7 +179,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         return;
     }
     if (!data[relation])
-        data[relation] = [[NSMutableArray alloc] init];
+        data[relation] = [NSMutableArray array];
     [data[relation] addObject:object];
 }
 
@@ -232,7 +232,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         relsynval, relsynpos, frame, wordIndex;
     char *line, word[BUFSIZ], relation[MAX_RELATION_LENGTH + 1];
     
-    data = [[NSMutableDictionary alloc] init];
+    data = [NSMutableDictionary dictionary];
     
     if (fseek(dataFiles[synpos],synval,SEEK_SET))
         return data;
@@ -268,7 +268,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     totalrelations = strtol(line, &line, 10);
     ++line;
     
-    relationsArray = [[NSMutableArray alloc] init];
+    relationsArray = [NSMutableArray array];
     for (i = 0; i < totalrelations; ++i) {
         for (j = 0; !isspace(*line) && j < 4; ++line) {
             relation[j++] = *line;
@@ -318,7 +318,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     }
 
     [relationsArray addObject:wordsSymbol];
-    finalRelationsArray = [[NSMutableArray alloc] init];
+    finalRelationsArray = [NSMutableArray array];
     for (i = 0; i < [relationOrdering count]; ++i) {
         relationString = relationOrdering[i];
         if ([relationsArray containsObject:relationString])
@@ -485,8 +485,10 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
            [synsets addObjectsFromArray:[self synsetsForWord:base]];
         }
     }
-    
-    return [[synsets allObjects] sortedArrayUsingSelector:@selector(compare:)];
+	
+	NSArray *allObjects = [synsets allObjects];
+	[synsets release];
+    return [allObjects sortedArrayUsingSelector:@selector(compare:)];
 }
 
 - (NSString *)avatarForSynset:(NSNumber *)synset
@@ -563,7 +565,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 
 - (NSArray *)ancestryForSynset:(NSNumber *)synset
 {
-    NSMutableArray *ancestry = [[NSMutableArray alloc] init];
+    NSMutableArray *ancestry = [NSMutableArray array];
     
     if (!synset)
         return ancestry;
@@ -586,7 +588,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     all = [[NSMutableArray alloc] initWithArray:nounRoots];
     [all addObjectsFromArray:verbRoots];
     
-    return all;
+    return [all autorelease];
 }
 
 - (NSArray *)hypernymNounRoots
