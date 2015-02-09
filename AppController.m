@@ -63,7 +63,11 @@ NSString *verbsString = @"VERBS";
 
 - (void)setGuessesForWord:(NSString *)word
 {
-    NSArray *g = [spellChecker guessesForWord:word];
+	NSRange wordRange = NSMakeRange(0, word.length);
+    NSArray *g = [spellChecker guessesForWordRange:wordRange
+										  inString:word
+										  language:@"en"
+							inSpellDocumentWithTag:0];
     [g retain];
     [guesses release];
     guesses = g;
@@ -186,7 +190,7 @@ NSString *verbsString = @"VERBS";
     }
     if (theSynsetChanged) {
         if (theSynset)
-            [sensesTable selectRow:[senses indexOfObject:theSynset]
+            [sensesTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[senses indexOfObject:theSynset]]
                 byExtendingSelection:NO];
         theSynsetChanged = NO;
     }

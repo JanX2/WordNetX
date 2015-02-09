@@ -128,7 +128,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         while(*line == ' ' || isdigit(*line))
             ++line;
         
-        [vf addObject:[NSString stringWithCString:line]];
+        [vf addObject:@(line)];
     }
     
     fclose(a);
@@ -160,11 +160,11 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             relation[j++] = *line;
         }
         relation[j] = '\0';
-        relationString = [NSString stringWithCString: relation];
+        relationString = @(relation);
         
         ++line; // " "
         
-        [nameOfrelation setObject:[NSString stringWithCString:line]
+        [nameOfrelation setObject:@(line)
             forKey:relationString];
         [relationOrdering addObject:relationString];
     }
@@ -258,7 +258,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             findCharReplace('(', '\0', word);
         }
         
-        [self toData:data addObject:[NSString stringWithCString:word] 
+        [self toData:data addObject:@(word)
             withRelation:wordsSymbol];
         
         line += 3; // " %1x "
@@ -273,7 +273,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             relation[j++] = *line;
         }
         relation[j] = '\0';
-        relationString = [NSString stringWithCString: relation];
+        relationString = @(relation);
         [relationsArray addObject:relationString];
 
         line += 1; // " "
@@ -335,7 +335,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         [self toData:data
                 addObject:[typeStrings[synpos] stringByAppendingString:
                     [@": " stringByAppendingString:
-                        [NSString stringWithCString:word]]]
+                        @(word)]]
                 withRelation:glossSymbol];
     }
         
@@ -473,7 +473,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             query[j] = '\0';
             
             [synsets addObjectsFromArray:
-                [self synsetsForWord:[NSString stringWithCString:query]]];
+                [self synsetsForWord:@(query)]];
         }
     }
     
