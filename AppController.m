@@ -193,9 +193,13 @@ NSString *verbsString = @"VERBS";
         theWordChanged = NO;
     }
     if (theSynsetChanged) {
-        if (theSynset)
-            [sensesTable selectRowIndexes:[NSIndexSet indexSetWithIndex:[senses indexOfObject:theSynset]]
-                byExtendingSelection:NO];
+        if (theSynset) {
+            NSUInteger idx = [senses indexOfObject:theSynset];
+            if (idx != NSNotFound) {
+                [sensesTable selectRowIndexes:[NSIndexSet indexSetWithIndex:idx]
+                         byExtendingSelection:NO];
+            }
+        }
         theSynsetChanged = NO;
     }
     [self setCurrentEntry];
