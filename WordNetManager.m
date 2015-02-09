@@ -30,8 +30,8 @@ NSString *relationSymbol = @"****";
 #define NUM_INFLECTIONS 17
 
 struct Inflection {
-    NSString *suffix;
-    NSString *ending;
+    __unsafe_unretained NSString *suffix;
+    __unsafe_unretained NSString *ending;
 } inflections[NUM_INFLECTIONS] = {
     {@"s", @""},
     {@"ses", @"s"},
@@ -133,7 +133,6 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     
     fclose(a);
     verbFrames = vf;
-    [verbFrames retain];
 }
 
 - (void)loadRelationFormat
@@ -358,15 +357,12 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     
     if (self = [super init]) {
         dataBundle = bundle;
-        [dataBundle retain];
         
         indexDict = [[NSMutableDictionary alloc] init];
         dataDict = [[NSMutableDictionary alloc] init];
         
         nounRoots = [self loadRootsOfType:noun];
-        [nounRoots retain];
         verbRoots = [self loadRootsOfType:verb];
-        [verbRoots retain];
         
         [self loadVerbFrames];
         [self loadRelationFormat];
@@ -402,12 +398,6 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 {
     NSInteger i;
     
-    [dataBundle release];
-    [indexDict release];
-    [dataDict release];
-    [nounRoots release];
-    [verbRoots release];
-    [verbFrames release];
     
     for (i = 1; i <= NUM_TYPES; ++i)
         fclose(indexFiles[i]);
@@ -418,7 +408,6 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     for (i = 1; i <= NUM_TYPES; ++i)
         fclose(excFiles[i]);
     
-    [super dealloc];
 }
 
 - (BOOL)validSynset:(NSNumber *)synset
@@ -482,7 +471,6 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     }
 	
 	NSArray *allObjects = [synsets allObjects];
-	[synsets release];
     return [allObjects sortedArrayUsingSelector:@selector(compare:)];
 }
 
@@ -585,7 +573,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     all = [[NSMutableArray alloc] initWithArray:nounRoots];
     [all addObjectsFromArray:verbRoots];
     
-    return [all autorelease];
+    return all;
 }
 
 - (NSArray *)hypernymNounRoots

@@ -40,24 +40,18 @@ NSString *verbsString = @"VERBS";
 
 - (void)setTheWord:(NSString *)w
 {
-    [w retain];
-    [theWord release];
     theWord = w;
     theWordChanged = YES;
 }
 
 - (void)setTheSynset:(NSNumber *)s
 {
-    [s retain];
-    [theSynset release];
     theSynset = s;
     theSynsetChanged = YES;
 }
 
 - (void)setSenses:(NSArray *)s
 {
-    [s retain];
-    [senses release];
     senses = s;
 }
 
@@ -68,8 +62,6 @@ NSString *verbsString = @"VERBS";
 										  inString:word
 										  language:@"en"
 							inSpellDocumentWithTag:0];
-    [g retain];
-    [guesses release];
     guesses = g;
 }
 
@@ -84,8 +76,6 @@ NSString *verbsString = @"VERBS";
     if (currentEntry)
         [backStack addObject:currentEntry];
 
-    [entry retain];
-    [currentEntry release];
     currentEntry = entry;
 }
 
@@ -100,9 +90,9 @@ NSString *verbsString = @"VERBS";
     
     height = 16.0;
     for (i = 0; i < [senses count]; ++i) {
-        [cell setAttributedStringValue:[[[NSAttributedString alloc]
+        [cell setAttributedStringValue:[[NSAttributedString alloc]
             initWithString:[wordNet glossForSynset:senses[i]]
-            attributes:attrs] autorelease]];
+            attributes:attrs]];
         testHeight = [cell cellSizeForBounds:NSMakeRect(0, 0,
             [[sensesTable mainColumn] width] * VERTICAL_MARGIN_FACTOR, 50000)].height;
         
@@ -112,7 +102,6 @@ NSString *verbsString = @"VERBS";
     [sensesTable setRowHeight:height * LINE_BOTTOM_MARGIN_FACTOR + LINE_BOTTOM_MARGIN];
     
     programResizing = NO;
-	[cell release];
 }
 
 - (void)updateGuesses {
@@ -248,23 +237,6 @@ NSString *verbsString = @"VERBS";
     return self;
 }
 
-- (void)dealloc
-{
-    [wordNet release];
-    [spellChecker release];
-    
-    [theWord release];
-    [senses release];
-    [guesses release];
-    [theSynset release];
-    [expandedRelations release];
-    
-    [currentEntry release];
-    [backStack release];
-    [forwardStack release];
-
-    [super dealloc];
-}
 
 - (void)awakeFromNib
 {
@@ -272,7 +244,6 @@ NSString *verbsString = @"VERBS";
         // Default is too short.
         
     spellChecker = [NSSpellChecker sharedSpellChecker];
-    [spellChecker retain];
 }
 
 - (IBAction)back:(id)sender
@@ -282,10 +253,8 @@ NSString *verbsString = @"VERBS";
         return;
 
     id entry = backStack[location];
-    [entry retain];
     [backStack removeObjectAtIndex:location];
     [forwardStack addObject:currentEntry];
-    [currentEntry release];
     currentEntry = entry;
     
     [self updateFromHistory:entry];
@@ -298,10 +267,8 @@ NSString *verbsString = @"VERBS";
         return;
 
     id entry = forwardStack[location];
-    [entry retain];
     [forwardStack removeObjectAtIndex:location];
     [backStack addObject:currentEntry];
-    [currentEntry release];
     currentEntry = entry;
     
     [self updateFromHistory:entry];
