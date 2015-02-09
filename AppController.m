@@ -74,7 +74,10 @@ NSString *verbsString = @"VERBS";
 }
 
 - (void)setCurrentEntry
-{   
+{
+	if (theWord == nil || theSynset == nil) {
+		return;
+	}
     NSArray *entry = @[theWord, theSynset];
     if (timeTraveling)
         return;
