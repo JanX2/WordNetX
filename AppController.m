@@ -108,7 +108,7 @@ NSString *verbsString = @"VERBS";
 }
 
 - (void)updateGuesses {
-    if (misspelling = ([senses count] == 0)) {
+    if ((misspelling = ([senses count] == 0))) {
 	[self setGuessesForWord:theWord];
         [[[sensesTable mainColumn] headerCell] setStringValue:@"Not Found"];
         [[[relationsView mainColumn] headerCell] setStringValue:@"Guesses"]; 

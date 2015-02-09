@@ -102,7 +102,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     
     while (getclippedline(lineBuffer, LINE_SIZE, a)) {
         line = lineBuffer;
-        if (synval = strtol(line, &line, 10))
+        if ((synval = strtol(line, &line, 10)))
             [rootlist addObject:[NSNumber numberWithInteger:synval + type * MINSYNSET]];
     }
     
@@ -446,7 +446,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 {
     NSArray *synsets;
     
-    if (synsets = [indexDict objectForKey:word])
+    if ((synsets = [indexDict objectForKey:word]))
         return synsets;
     return [self loadSynsetsForWord:word];
 }
@@ -523,7 +523,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 {
     NSDictionary *data;
     
-    if (data = [dataDict objectForKey:synset])
+    if ((data = [dataDict objectForKey:synset]))
         return [data objectForKey:relation];
     return [[self loadDataForSynset:synset] objectForKey:relation];
 }
@@ -570,7 +570,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         
     do {
         [ancestry addObject:synset];
-    } while (synset = [self hypernymForSynset:synset]);
+    } while ((synset = [self hypernymForSynset:synset]));
     return ancestry;
 }
 
