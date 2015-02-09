@@ -143,12 +143,10 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     char *line, relation[MAX_RELATION_LENGTH + 1];
     NSString *relationString;
     
-    nameOfRelation = [[NSMutableDictionary alloc] init];
-	[nameOfRelation retain];
+	nameOfRelation = [[NSMutableDictionary alloc] init];
 	
-    relationOrdering = [[NSMutableArray alloc] init];
-    [relationOrdering retain];
-    
+	relationOrdering = [[NSMutableArray alloc] init];
+	
     if (!(a = fopen([[dataBundle pathForResource:@"relations"
             ofType:@"format"] UTF8String], "r")))
         return;
