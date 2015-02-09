@@ -576,7 +576,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 
 - (POS)posForSynset:(NSNumber *)synset
 {
-    return [synset integerValue] / MINSYNSET;
+    return [synset intValue] / MINSYNSET;
 }
 
 - (NSArray *)allHypernymRoots
