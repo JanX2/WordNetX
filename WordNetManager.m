@@ -186,11 +186,13 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 
 - (NSArray *)loadSynsetsForWord:(NSString *)word
 {
-    NSInteger i, j, synset = 0;
+	NSString *wordlower;
+	NSInteger i, j, synset = 0;
     NSMutableArray *synsets;
     char *line, query[BUFSIZ];
-    
-    [[word lowercaseString] getCString:query];
+	
+	wordlower = [word lowercaseString];
+	CFStringGetBytes((CFStringRef)wordlower, CFRangeMake(0, wordlower.length), kCFStringEncodingUTF8, '?', false, (UInt8 *)&query, BUFSIZ, NULL);
     findCharReplace(' ', '_', query);
     
     synsets = [[NSMutableArray alloc] init];
@@ -460,8 +462,8 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     
     [synsets addObjectsFromArray:[self synsetsForWord:word]];
         
-    wordlower = [word lowercaseString];
-    [wordlower getCString:query];
+	wordlower = [word lowercaseString];
+	CFStringGetBytes((CFStringRef)wordlower, CFRangeMake(0, wordlower.length), kCFStringEncodingUTF8, '?', false, (UInt8 *)&query, BUFSIZ, NULL);
     findCharReplace(' ', '_', query);
     
     for (i = 1; i <= NUM_TYPES; ++i) {
