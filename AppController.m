@@ -226,7 +226,7 @@ NSString *verbsString = @"VERBS";
 
 - (instancetype)init
 {
-    [super init];
+    if (!(self = [super init])) return nil;
     wordNet = [[WordNetManager alloc] initWithBundle:[NSBundle mainBundle]];
     backStack = [[NSMutableArray alloc] init];
     [backStack retain];
