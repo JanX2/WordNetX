@@ -83,7 +83,7 @@ static int bin_search_key(char *searchkey, FILE *fp)
     int c;
     long top, mid, bot, diff;
     char *linep, key[KEY_LEN];
-    int length, offset1, offset2;
+    long length, offset1, offset2;
 
     /* do binary search to find correct place in file to insert line */
 
