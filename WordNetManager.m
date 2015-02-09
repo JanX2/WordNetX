@@ -97,7 +97,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     char *line;
     
     if (!(a = fopen([[dataBundle pathForResource:@"roots"
-            ofType:(NSString *)typeStrings[type]] cString], "r")))
+            ofType:(NSString *)typeStrings[type]] UTF8String], "r")))
         return nil;
     
     while (getclippedline(lineBuffer, LINE_SIZE, a)) {
@@ -117,7 +117,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     char *line;
     
     if (!(a = fopen([[dataBundle pathForResource:@"frames"
-            ofType:@"vrb"] cString], "r")))
+            ofType:@"vrb"] UTF8String], "r")))
         return;
     
     vf = [[NSMutableArray alloc] init];
@@ -150,7 +150,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     [relationOrdering retain];
     
     if (!(a = fopen([[dataBundle pathForResource:@"relations"
-            ofType:@"format"] cString], "r")))
+            ofType:@"format"] UTF8String], "r")))
         return;
     
     for (i = 0; getclippedline(lineBuffer, LINE_SIZE, a); ++i) {
@@ -379,21 +379,21 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         
         for (i = 1; i <= NUM_TYPES; ++i) {
             if (!(a = fopen([[dataBundle pathForResource:@"index"
-                    ofType:(NSString *)typeStrings[i]] cString], "r")))
+                    ofType:(NSString *)typeStrings[i]] UTF8String], "r")))
                 return nil;
             indexFiles[i] = a;
         }
         
         for (i = 1; i <= NUM_TYPES; ++i) {
             if (!(a = fopen([[dataBundle pathForResource:@"data"
-                    ofType:(NSString *)typeStrings[i]] cString], "r")))
+                    ofType:(NSString *)typeStrings[i]] UTF8String], "r")))
                 return nil;
             dataFiles[i] = a;
         }
         
         for (i = 1; i <= NUM_TYPES; ++i) {
             if (!(a = fopen([[dataBundle pathForResource:(NSString *)typeStrings[i]
-                    ofType:@"exc"] cString], "r")))
+                    ofType:@"exc"] UTF8String], "r")))
                 return nil;
             excFiles[i] = a;
         }
@@ -435,7 +435,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         return NO;
         
     synpos = [synset integerValue] / MINSYNSET;
-    synsetString = ( char *) [[[synset stringValue] substringFromIndex: 1] cString];
+    synsetString = ( char *) [[[synset stringValue] substringFromIndex: 1] UTF8String];
     
     if (bin_search(synsetString, indexFiles[synpos]))
         return YES;
