@@ -465,7 +465,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     findCharReplace(' ', '_', query);
     
     for (i = 1; i <= NUM_TYPES; ++i) {
-        if (line = bin_search(query, excFiles[i])) {
+        if ((line = bin_search(query, excFiles[i]))) {
             line += [word length] + 1; // " "
             
             for (j = 0; *line != '\n'; ++line)
