@@ -20,7 +20,7 @@
     NSString *str;
     
     if ([self selectedRow] >= 0)
-        str = [[self delegate] tableView:self
+        str = [(id <NSTableViewDataSource>)[self delegate] tableView:self
             objectValueForTableColumn:[[self tableColumns] objectAtIndex:0]
             row:[self selectedRow]];
     else
