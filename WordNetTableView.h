@@ -10,6 +10,6 @@
 @interface WordNetTableView : NSTableView {
     BOOL holdFirstResponder;
 }
-- (BOOL)needsPanelToBecomeKey;
+@property (nonatomic, readonly) BOOL needsPanelToBecomeKey;
 - (void)copy:(id)sender;
 @end

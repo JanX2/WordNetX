@@ -21,12 +21,12 @@
     
     if ([self selectedRow] >= 0)
         str = [(id <NSTableViewDataSource>)[self delegate] tableView:self
-            objectValueForTableColumn:[[self tableColumns] objectAtIndex:0]
+            objectValueForTableColumn:[self tableColumns][0]
             row:[self selectedRow]];
     else
         str = @"";
             
-    [pboard declareTypes:[NSArray arrayWithObjects:NSStringPboardType,nil] owner:self];
+    [pboard declareTypes:@[NSStringPboardType] owner:self];
     [pboard setString:str forType:NSStringPboardType];
 }
 

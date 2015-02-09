@@ -10,7 +10,7 @@
 #import "WordNetManager.h"
 
 @interface NSTableView (NSTableViewExtentionForWordNetX)
-- (NSTableColumn *)mainColumn;
+@property (nonatomic, readonly, strong) NSTableColumn *mainColumn;
 @end
 
 @interface NSMutableArray (NSMutableArrayExtentionForWordNetX)

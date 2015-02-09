@@ -23,7 +23,7 @@ typedef enum {noun = 1, verb, adj, adv} POS;
 }
 + (NSString *)posString:(POS)p;
 
-- (id)initWithBundle:(NSBundle *)bundle;
+- (instancetype)initWithBundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
 - (void)dealloc;
 - (BOOL)validSynset:(NSNumber *)synset;
 
@@ -52,12 +52,12 @@ typedef enum {noun = 1, verb, adj, adv} POS;
 - (NSArray *)ancestryForSynset:(NSNumber *)synset;
 - (POS)posForSynset:(NSNumber *)synset;
 
-- (NSArray *)allHypernymRoots;
-- (NSArray *)hypernymNounRoots;
-- (NSArray *)hypernymVerbRoots;
+@property (nonatomic, readonly, copy) NSArray *allHypernymRoots;
+@property (nonatomic, readonly, copy) NSArray *hypernymNounRoots;
+@property (nonatomic, readonly, copy) NSArray *hypernymVerbRoots;
 
-- (NSArray *)allRelations;
-- (NSArray *)verbFrames;
+@property (nonatomic, readonly, copy) NSArray *allRelations;
+@property (nonatomic, readonly, copy) NSArray *verbFrames;
 - (NSString *)nameOfrelation:(NSString *)relation;
 - (BOOL)isRelation:(id)testObject;
 @end

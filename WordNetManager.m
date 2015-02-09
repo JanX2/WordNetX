@@ -103,7 +103,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     while (getclippedline(lineBuffer, LINE_SIZE, a)) {
         line = lineBuffer;
         if ((synval = strtol(line, &line, 10)))
-            [rootlist addObject:[NSNumber numberWithInteger:synval + type * MINSYNSET]];
+            [rootlist addObject:@(synval + type * MINSYNSET)];
     }
     
     fclose(a);
@@ -164,8 +164,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         
         ++line; // " "
         
-        [nameOfrelation setObject:@(line)
-            forKey:relationString];
+        nameOfrelation[relationString] = @(line);
         [relationOrdering addObject:relationString];
     }
     
@@ -176,12 +175,12 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     withRelation:(id)relation
 {
     if ([relation isEqualToString:glossSymbol]) {
-        [data setObject:object forKey:relation];
+        data[relation] = object;
         return;
     }
-    if (![data objectForKey:relation])
-        [data setObject:[[NSMutableArray alloc] init] forKey: relation];
-    [[data objectForKey:relation] addObject:object];
+    if (!data[relation])
+        data[relation] = [[NSMutableArray alloc] init];
+    [data[relation] addObject:object];
 }
 
 - (NSArray *)loadSynsetsForWord:(NSString *)word
@@ -214,11 +213,11 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         for(; isdigit(*line); ++line) {
             synset = strtol(line, &line, 10);
             synset += i * MINSYNSET;
-            [synsets addObject:[NSNumber numberWithInteger:synset]];
+            [synsets addObject:@(synset)];
         }
     }
     
-    [indexDict setObject:synsets forKey:word];
+    indexDict[word] = synsets;
     return synsets;
 }
 
@@ -289,13 +288,12 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         
         if (wordIndex) {
             [self toData:data
-                addObject:[NSArray arrayWithObjects:
-                    [NSNumber numberWithInteger:(relsynpos * MINSYNSET + relsynval)],
-                    [NSNumber numberWithInteger:wordIndex], nil]
+                addObject:@[@(relsynpos * MINSYNSET + relsynval),
+                    @(wordIndex)]
                 withRelation:relationString];
         } else {
             [self toData:data
-                addObject:[NSNumber numberWithInteger:(relsynpos * MINSYNSET + relsynval)]
+                addObject:@(relsynpos * MINSYNSET + relsynval)
                 withRelation:relationString];
         }
         
@@ -312,7 +310,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             frame = strtol(line, &line, 10);
             
             [self toData:data
-                addObject:[verbFrames objectAtIndex: frame]
+                addObject:verbFrames[frame]
                 withRelation:framesSymbol];
                             
             line += 4; // " %2d "
@@ -322,12 +320,12 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     [relationsArray addObject:wordsSymbol];
     finalRelationsArray = [[NSMutableArray alloc] init];
     for (i = 0; i < [relationOrdering count]; ++i) {
-        relationString = [relationOrdering objectAtIndex:i];
+        relationString = relationOrdering[i];
         if ([relationsArray containsObject:relationString])
             [finalRelationsArray addObject:relationString];
     }
 
-    [data setObject:finalRelationsArray forKey:relationSymbol];
+    data[relationSymbol] = finalRelationsArray;
 
     if (*line == '|') {
         line += 2; // "| "
@@ -355,7 +353,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     return @"";
 }
 
-- (id)initWithBundle:(NSBundle *)bundle
+- (instancetype)initWithBundle:(NSBundle *)bundle
 {
     NSInteger i;
     FILE *a;
@@ -400,7 +398,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
             excFiles[i] = a;
         }
         
-        [indexDict setObject:[[NSArray alloc] init] forKey:@""];
+        indexDict[@""] = [[NSArray alloc] init];
     }
     return self;
 }
@@ -448,7 +446,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 {
     NSArray *synsets;
     
-    if ((synsets = [indexDict objectForKey:word]))
+    if ((synsets = indexDict[word]))
         return synsets;
     return [self loadSynsetsForWord:word];
 }
@@ -502,11 +500,11 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     NSArray *list;
         
     list = [self wordsForSynset:synset];
-    avatar = [list objectAtIndex:0];
+    avatar = list[0];
     
     if ([[avatar lowercaseString] isEqualToString:[word lowercaseString]])
         if ([list count] > 1)
-            avatar = [list objectAtIndex:1];
+            avatar = list[1];
         
     return avatar;
 }
@@ -516,18 +514,18 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     NSArray *list = [self wordsForSynset:synset];
     
     if ([list count] > index)
-        return [list objectAtIndex:index];
+        return list[index];
     else
-        return [list objectAtIndex:0];
+        return list[0];
 }
 
 - (id)dataForSynset:(NSNumber *)synset withRelation:(id)relation
 {
     NSDictionary *data;
     
-    if ((data = [dataDict objectForKey:synset]))
-        return [data objectForKey:relation];
-    return [[self loadDataForSynset:synset] objectForKey:relation];
+    if ((data = dataDict[synset]))
+        return data[relation];
+    return [self loadDataForSynset:synset][relation];
 }
 
 - (NSArray *)wordsForSynset:(NSNumber *)synset
@@ -549,7 +547,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 {
     NSArray *hypernyms = [self dataForSynset:synset withRelation:hypernymSymbol];
     if ([hypernyms count])
-        return [hypernyms objectAtIndex:0];
+        return hypernyms[0];
     return nil;
 }
 
@@ -614,7 +612,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
 
 - (NSString *)nameOfrelation:(NSString *)relation
 {
-    return [nameOfrelation objectForKey:relation];
+    return nameOfrelation[relation];
 }
 
 - (BOOL)isRelation:(id)testObject

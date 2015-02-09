@@ -19,7 +19,7 @@ NSString *verbsString = @"VERBS";
 @implementation NSTableView (NSTableViewExtentionForWordNetX)
 - (NSTableColumn *)mainColumn
 {
-    return [[self tableColumns] objectAtIndex:0];
+    return [self tableColumns][0];
 }
 @end
 
@@ -27,7 +27,7 @@ NSString *verbsString = @"VERBS";
 - (void)setObject:(id)anObject forIndex:(NSInteger)index
 {
     if (index < [self count])
-        [self replaceObjectAtIndex:index withObject:anObject];
+        self[index] = anObject;
     while (index > [self count])
         [self addObject:[NSNull null]];
     [self addObject:anObject];
@@ -75,7 +75,7 @@ NSString *verbsString = @"VERBS";
 
 - (void)setCurrentEntry
 {   
-    NSArray *entry = [NSArray arrayWithObjects:theWord, theSynset, nil];
+    NSArray *entry = @[theWord, theSynset];
     if (timeTraveling)
         return;
     if (currentEntry)
@@ -98,7 +98,7 @@ NSString *verbsString = @"VERBS";
     height = 16.0;
     for (i = 0; i < [senses count]; ++i) {
         [cell setAttributedStringValue:[[NSAttributedString alloc]
-            initWithString:[wordNet glossForSynset:[senses objectAtIndex:i]]
+            initWithString:[wordNet glossForSynset:senses[i]]
             attributes:attrs]];
         testHeight = [cell cellSizeForBounds:NSMakeRect(0, 0,
             [[sensesTable mainColumn] width] * VERTICAL_MARGIN_FACTOR, 50000)].height;
@@ -148,12 +148,12 @@ NSString *verbsString = @"VERBS";
     NSInteger i, j = 0;
     
     if ([wordNet posForSynset:theSynset] == verb)
-        [hierarchyBrowser selectRow:[[hierarchyData objectAtIndex:0] count] 
+        [hierarchyBrowser selectRow:[hierarchyData[0] count] 
             inColumn:j++];
     for (i = [ancestry count] - 1; i >= 0; --i, ++j)
         [hierarchyBrowser
-            selectRow:[[hierarchyData objectAtIndex:j] indexOfObject:
-                [ancestry objectAtIndex:i]]
+            selectRow:[hierarchyData[j] indexOfObject:
+                ancestry[i]]
             inColumn:j];
 }
 
@@ -185,7 +185,7 @@ NSString *verbsString = @"VERBS";
         [sensesTable reloadData];
         [sensesTable deselectAll:nil];
         if (!theSynset && [senses count])
-            [self setTheSynset:[senses objectAtIndex:0]];
+            [self setTheSynset:senses[0]];
         theWordChanged = NO;
     }
     if (theSynsetChanged) {
@@ -210,9 +210,9 @@ NSString *verbsString = @"VERBS";
 - (void)updateFromHistory:(NSArray *)entry
 {    
     timeTraveling = YES;
-    [self setTheWord:[entry objectAtIndex: 0]];
+    [self setTheWord:entry[0]];
     if ([entry count] > 1)
-        [self setTheSynset:[entry objectAtIndex: 1]];
+        [self setTheSynset:entry[1]];
     else
         [self setTheSynset:nil];
     [self updateUI];
@@ -221,7 +221,7 @@ NSString *verbsString = @"VERBS";
 
 //*** End Private Methods
 
-- (id)init
+- (instancetype)init
 {
     [super init];
     wordNet = [[WordNetManager alloc] initWithBundle:[NSBundle mainBundle]];
@@ -277,7 +277,7 @@ NSString *verbsString = @"VERBS";
     if (location < 0)
         return;
 
-    id entry = [backStack objectAtIndex:location];
+    id entry = backStack[location];
     [entry retain];
     [backStack removeObjectAtIndex:location];
     [forwardStack addObject:currentEntry];
@@ -293,7 +293,7 @@ NSString *verbsString = @"VERBS";
     if (location < 0)
         return;
 
-    id entry = [forwardStack objectAtIndex:location];
+    id entry = forwardStack[location];
     [entry retain];
     [forwardStack removeObjectAtIndex:location];
     [backStack addObject:currentEntry];
@@ -347,7 +347,7 @@ NSString *verbsString = @"VERBS";
 objectValueForTableColumn:(NSTableColumn *)tableColumn
             row:(NSInteger)row
 {
-    return [wordNet glossForSynset:[senses objectAtIndex:row]];
+    return [wordNet glossForSynset:senses[row]];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
@@ -359,7 +359,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     if (row < 0)
         [self setTheSynset:nil];
     else
-        [self setTheSynset:[senses objectAtIndex:row]];
+        [self setTheSynset:senses[row]];
     [self updateUI];
 }
 
@@ -384,12 +384,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
     if (misspelling)
-        return [guesses objectAtIndex:index];
+        return guesses[index];
     
     if (item)
-        return [[wordNet dataForSynset:theSynset withRelation:item]
-            objectAtIndex:index];
-    return [[wordNet relationsForSynset:theSynset] objectAtIndex:index];
+        return [wordNet dataForSynset:theSynset withRelation:item][index];
+    return [wordNet relationsForSynset:theSynset][index];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
@@ -424,8 +423,8 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     if ([item isKindOfClass:[NSNumber class]])
         return [wordNet avatarForSynset:item];
     if ([item isKindOfClass:[NSArray class]])
-        return [wordNet avatarForSynset:[item objectAtIndex:0]
-            atIndex:[[item objectAtIndex:1] integerValue]];
+        return [wordNet avatarForSynset:item[0]
+            atIndex:[item[1] integerValue]];
     return item;
 }
 
@@ -458,9 +457,9 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         [self setTheSynset:item];
         [self setTheWord:[wordNet avatarForSynset:theSynset]];
     } else if ([item isKindOfClass:[NSArray class]]) {
-        [self setTheSynset:[item objectAtIndex:0]];
+        [self setTheSynset:item[0]];
         [self setTheWord:[wordNet avatarForSynset:theSynset
-            atIndex:[[item objectAtIndex:1] integerValue]]];
+            atIndex:[item[1] integerValue]]];
     } else if ([item isKindOfClass:[NSString class]]) {
         [self setTheWord:item];
         [self setTheSynset:nil];
@@ -477,11 +476,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSInteger column = [sender selectedColumn];
     NSInteger row = [sender selectedRowInColumn:column];
     
-    if (column == 0 && row == [[hierarchyData objectAtIndex:column] count]) {
+    if (column == 0 && row == [hierarchyData[column] count]) {
         [self setTheWord:@""];
         [self setTheSynset:nil];
     } else {
-        [self setTheSynset:[[hierarchyData objectAtIndex:column] objectAtIndex:row]];
+        [self setTheSynset:hierarchyData[column][row]];
         [self setTheWord:[wordNet avatarForSynset:theSynset]];
     }
     [self updateUI];
@@ -490,17 +489,16 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 - (NSInteger)browser:(NSBrowser *)sender numberOfRowsInColumn:(NSInteger)column
 {
     if (column == 0)
-        return [[hierarchyData objectAtIndex:0] count] + 1; // the roots
+        return [hierarchyData[0] count] + 1; // the roots
         
     if (column == 1 && [[sender selectedCellInColumn:0] stringValue] == verbsString)
         [hierarchyData setObject:[wordNet hypernymVerbRoots] forIndex:1];
     else
         [hierarchyData
             setObject:[wordNet hyponymsForSynset:
-                [[hierarchyData objectAtIndex:column - 1] objectAtIndex:
-                    [sender selectedRowInColumn:column - 1]]]
+                hierarchyData[column - 1][[sender selectedRowInColumn:column - 1]]]
             forIndex:column];
-    return [[hierarchyData objectAtIndex:column] count];
+    return [hierarchyData[column] count];
 }
 
 - (void)browser:(NSBrowser *)sender willDisplayCell:(id)cell
@@ -509,11 +507,11 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
     NSNumber *synset;
     NSString *avatar;
     
-    if (column == 0 && (row == [[hierarchyData objectAtIndex:0] count])) {
+    if (column == 0 && (row == [hierarchyData[0] count])) {
         avatar = verbsString;
         [cell setLeaf:NO];
     } else {
-        synset = [[hierarchyData objectAtIndex:column] objectAtIndex:row];
+        synset = hierarchyData[column][row];
         avatar = [wordNet avatarForSynset:synset];
         [cell setLeaf:[[wordNet hyponymsForSynset: synset] count] == 0];
     }
