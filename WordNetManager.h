@@ -14,7 +14,7 @@ typedef enum {noun = 1, verb, adj, adv} POS;
 @interface WordNetManager : NSObject {
     NSBundle *dataBundle;
     NSMutableDictionary *indexDict, *dataDict,
-        *nameOfrelation;
+        *nameOfRelation;
     NSMutableArray *relationOrdering;
     NSArray *nounRoots, *verbRoots, *verbFrames;
     FILE *indexFiles[NUM_TYPES + 1];
@@ -58,6 +58,6 @@ typedef enum {noun = 1, verb, adj, adv} POS;
 
 @property (nonatomic, readonly, copy) NSArray *allRelations;
 @property (nonatomic, readonly, copy) NSArray *verbFrames;
-- (NSString *)nameOfrelation:(NSString *)relation;
+- (NSString *)nameOfRelation:(NSString *)relation;
 - (BOOL)isRelation:(id)testObject;
 @end

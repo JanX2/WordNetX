@@ -143,9 +143,9 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     char *line, relation[MAX_RELATION_LENGTH + 1];
     NSString *relationString;
     
-    nameOfrelation = [[NSMutableDictionary alloc] init];
-    [nameOfrelation retain];
-    
+    nameOfRelation = [[NSMutableDictionary alloc] init];
+	[nameOfRelation retain];
+	
     relationOrdering = [[NSMutableArray alloc] init];
     [relationOrdering retain];
     
@@ -164,7 +164,7 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
         
         ++line; // " "
         
-        nameOfrelation[relationString] = @(line);
+        nameOfRelation[relationString] = @(line);
         [relationOrdering addObject:relationString];
     }
     
@@ -612,9 +612,9 @@ NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
     return verbFrames;
 }
 
-- (NSString *)nameOfrelation:(NSString *)relation
+- (NSString *)nameOfRelation:(NSString *)relation
 {
-    return nameOfrelation[relation];
+    return nameOfRelation[relation];
 }
 
 - (BOOL)isRelation:(id)testObject

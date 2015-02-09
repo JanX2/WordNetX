@@ -422,7 +422,7 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
         return item;
         
     if ([wordNet isRelation:item])
-        return [wordNet nameOfrelation:item];
+        return [wordNet nameOfRelation:item];
     if ([item isKindOfClass:[NSNumber class]])
         return [wordNet avatarForSynset:item];
     if ([item isKindOfClass:[NSArray class]])
