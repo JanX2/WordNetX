@@ -14,7 +14,7 @@
 @end
 
 @interface NSMutableArray (NSMutableArrayExtentionForWordNetX)
-- (void)setObject:(id)object forIndex:(int)index;
+- (void)setObject:(id)object forIndex:(NSInteger)index;
 @end
 
 @interface AppController : NSObject {

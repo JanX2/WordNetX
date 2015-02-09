@@ -56,8 +56,8 @@ struct Inflection {
 
 //*** Private Functions
 
-int getclippedline(char s[], int lim, FILE *f) {
-    int c = 0, i;
+NSInteger getclippedline(char s[], NSInteger lim, FILE *f) {
+    NSInteger c = 0, i;
     
     for (i=0; i<lim-1 && (c=fgetc(f))!=EOF && c!='\n'; ++i)
         s[i]=c;
@@ -69,14 +69,14 @@ int getclippedline(char s[], int lim, FILE *f) {
 }
 
 void findCharReplace(char find, char replace, char *line) {
-    int i;
+    NSInteger i;
     for(i = 0; line[i] != EOF; ++i)
         if (line[i] == find)
              line[i] = replace;
 }
 
-int indexOfCharInArray(char c, char *array, int count) {
-    int i;
+NSInteger indexOfCharInArray(char c, char *array, NSInteger count) {
+    NSInteger i;
     
     for (i = 0; i < count; ++i)
         if (array[i] == c)
@@ -93,7 +93,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 {
     NSMutableArray *rootlist = [[NSMutableArray alloc] init];
     FILE *a;
-    int synval;
+    NSInteger synval;
     char *line;
     
     if (!(a = fopen([[dataBundle pathForResource:@"roots"
@@ -103,7 +103,7 @@ int indexOfCharInArray(char c, char *array, int count) {
     while (getclippedline(lineBuffer, LINE_SIZE, a)) {
         line = lineBuffer;
         if (synval = strtol(line, &line, 10))
-            [rootlist addObject:[NSNumber numberWithInt:synval + type * MINSYNSET]];
+            [rootlist addObject:[NSNumber numberWithInteger:synval + type * MINSYNSET]];
     }
     
     fclose(a);
@@ -139,7 +139,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 - (void)loadRelationFormat
 {
     FILE *a;
-    int i, j;
+    NSInteger i, j;
     char *line, relation[MAX_RELATION_LENGTH + 1];
     NSString *relationString;
     
@@ -186,7 +186,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 
 - (NSArray *)loadSynsetsForWord:(NSString *)word
 {
-    int i, j, synset = 0;
+    NSInteger i, j, synset = 0;
     NSMutableArray *synsets;
     char *line, query[BUFSIZ];
     
@@ -212,7 +212,7 @@ int indexOfCharInArray(char c, char *array, int count) {
         for(; isdigit(*line); ++line) {
             synset = strtol(line, &line, 10);
             synset += i * MINSYNSET;
-            [synsets addObject:[NSNumber numberWithInt:synset]];
+            [synsets addObject:[NSNumber numberWithInteger:synset]];
         }
     }
     
@@ -225,9 +225,9 @@ int indexOfCharInArray(char c, char *array, int count) {
     NSMutableDictionary *data;
     NSString *relationString;
     NSMutableArray *relationsArray, *finalRelationsArray; 
-    POS synpos = [synset intValue] / MINSYNSET;
-    int synval = [synset intValue] % MINSYNSET;
-    int i, j, totalwords, totalrelations, totalframes,
+    POS synpos = [synset integerValue] / MINSYNSET;
+    NSInteger synval = [synset integerValue] % MINSYNSET;
+    NSInteger i, j, totalwords, totalrelations, totalframes,
         relsynval, relsynpos, frame, wordIndex;
     char *line, word[BUFSIZ], relation[MAX_RELATION_LENGTH + 1];
     
@@ -288,12 +288,12 @@ int indexOfCharInArray(char c, char *array, int count) {
         if (wordIndex) {
             [self toData:data
                 addObject:[NSArray arrayWithObjects:
-                    [NSNumber numberWithInt:(relsynpos * MINSYNSET + relsynval)],
-                    [NSNumber numberWithInt:wordIndex], nil]
+                    [NSNumber numberWithInteger:(relsynpos * MINSYNSET + relsynval)],
+                    [NSNumber numberWithInteger:wordIndex], nil]
                 withRelation:relationString];
         } else {
             [self toData:data
-                addObject:[NSNumber numberWithInt:(relsynpos * MINSYNSET + relsynval)]
+                addObject:[NSNumber numberWithInteger:(relsynpos * MINSYNSET + relsynval)]
                 withRelation:relationString];
         }
         
@@ -355,7 +355,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 
 - (id)initWithBundle:(NSBundle *)bundle
 {
-    int i;
+    NSInteger i;
     FILE *a;
     
     if (self = [super init]) {
@@ -405,7 +405,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 
 - (void)dealloc
 {
-    int i;
+    NSInteger i;
     
     [dataBundle release];
     [indexDict release];
@@ -428,13 +428,13 @@ int indexOfCharInArray(char c, char *array, int count) {
 
 - (BOOL)validSynset:(NSNumber *)synset
 {
-    int synpos;
+    NSInteger synpos;
     char *synsetString;
     
-    if ([synset intValue] < MINSYNSET || [synset intValue] > MAXSYNSET)
+    if ([synset integerValue] < MINSYNSET || [synset integerValue] > MAXSYNSET)
         return NO;
         
-    synpos = [synset intValue] / MINSYNSET;
+    synpos = [synset integerValue] / MINSYNSET;
     synsetString = ( char *) [[[synset stringValue] substringFromIndex: 1] cString];
     
     if (bin_search(synsetString, indexFiles[synpos]))
@@ -455,7 +455,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 {
     NSString *base, *wordlower;
     NSMutableSet *synsets = [[NSMutableSet alloc] init];
-    int i, j;
+    NSInteger i, j;
     char *line, query[BUFSIZ];
     
     [synsets addObjectsFromArray:[self synsetsForWord:word]];
@@ -509,7 +509,7 @@ int indexOfCharInArray(char c, char *array, int count) {
     return avatar;
 }
 
-- (NSString *)avatarForSynset:(NSNumber *)synset atIndex:(int)index
+- (NSString *)avatarForSynset:(NSNumber *)synset atIndex:(NSInteger)index
 {
     NSArray *list = [self wordsForSynset:synset];
     
@@ -576,7 +576,7 @@ int indexOfCharInArray(char c, char *array, int count) {
 
 - (POS)posForSynset:(NSNumber *)synset
 {
-    return [synset intValue] / MINSYNSET;
+    return [synset integerValue] / MINSYNSET;
 }
 
 - (NSArray *)allHypernymRoots

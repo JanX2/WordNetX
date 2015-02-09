@@ -33,7 +33,7 @@ typedef enum {noun = 1, verb, adj, adv} POS;
 
 - (NSString *)avatarForSynset:(NSNumber *)synset;
 - (NSString *)avatarForSynset:(NSNumber *)synset excepting:(NSString *)word;
-- (NSString *)avatarForSynset:(NSNumber *)synset atIndex:(int)index;
+- (NSString *)avatarForSynset:(NSNumber *)synset atIndex:(NSInteger)index;
 
 /* returns nil if relation does not hold for any values,
            array of NSNumbers for synset relations,
